@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyCoffee | Кофейня в Кишинёве</title>
+    <meta
+      name="description"
+      content="MyCoffee — демо-сайт для первой презентации кофейни: меню, атмосфера, акция с QR, контакты и карта."
+    />
+    <meta name="theme-color" content="#3b2518" />
+    <meta property="og:title" content="MyCoffee" />
+    <meta
+      property="og:description"
+      content="Кофейня, в которую хочется зайти по дороге: меню, атмосфера, QR-акция и адрес в центре Кишинёва."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/images/mycoffee-hero.png" />
+    <link rel="preload" href="assets/images/mycoffee-hero.png" as="image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CafeOrCoffeeShop",
+        "name": "MyCoffee",
+        "description": "Демо-сайт кофейни для первой презентации. Финальные данные обновляются после согласования с заказчиком.",
+        "servesCuisine": "Coffee, desserts, bakery",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Алексея Матеевича 87",
+          "addressLocality": "Кишинёв",
+          "addressCountry": "MD"
+        },
+        "sameAs": ["https://instagram.com/mycoffee.chisinau"]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Перейти к содержимому</a>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="MyCoffee home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy">
+          <strong>MyCoffee</strong>
+          <small>coffee house demo</small>
+        </span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Открыть меню"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Основная навигация">
+        <a href="#menu">Меню</a>
+        <a href="#about">О кофейне</a>
+        <a href="#promo">Акция</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#map">Карта</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section id="top" class="hero">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <p class="eyebrow" data-content="hero-eyebrow">Кишинёв · coffee house demo</p>
+          <h1 data-content="hero-title">MyCoffee</h1>
+          <p class="hero-script" data-content="hero-script">Твоя пауза на хороший кофе в центре Кишинёва</p>
+          <p class="hero-copy" data-content="hero-copy">
+            Свежая обжарка, спокойная атмосфера и любимые кофейные позиции на каждый день.
+            Зайди за кофе, десертом и первым промо по QR.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#menu">Открыть меню</a>
+            <a class="button button-secondary" href="#map">Построить маршрут</a>
+          </div>
+
+          <div class="hero-note">
+            <span class="hero-note-badge">Promo</span>
+            <span data-content="hero-note">Сканируй QR и получи бесплатный классический кофе при первом визите</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="anchor-strip" aria-label="Быстрые переходы">
+        <a href="#menu">Меню</a>
+        <a href="#about">О кофейне</a>
+        <a href="#promo">Акция</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#map">Карта</a>
+      </section>
+
+      <section id="menu" class="section">
+        <div class="section-heading">
+          <p class="eyebrow">Популярные позиции</p>
+          <h2>Меню для первой презентации</h2>
+          <p>
+            Демо-меню для первого показа. Финальные позиции, цены и сезонные предложения будут
+            обновлены после согласования с заказчиком.
+          </p>
+        </div>
+
+        <div class="menu-filters" role="tablist" aria-label="Категории меню">
+          <button class="filter-chip active" type="button" data-filter="all" aria-pressed="true">Все</button>
+          <button class="filter-chip" type="button" data-filter="coffee" aria-pressed="false">Кофе</button>
+          <button class="filter-chip" type="button" data-filter="cold" aria-pressed="false">Холодные</button>
+          <button class="filter-chip" type="button" data-filter="dessert" aria-pressed="false">Десерты</button>
+        </div>
+
+        <div class="menu-grid" id="menu-grid"></div>
+      </section>
+
+      <section id="about" class="section split-section">
+        <div class="split-copy">
+          <p class="eyebrow">О кофейне</p>
+          <h2>Кофейня, куда хочется зайти по дороге</h2>
+          <p>
+            MyCoffee — это место для короткой паузы, встречи после пар, кофе навынос и спокойных
+            минут в центре города. Мы собрали понятное меню, теплую атмосферу и повод заглянуть снова.
+          </p>
+        </div>
+
+        <div class="feature-grid" id="feature-grid"></div>
+      </section>
+
+      <section id="promo" class="section promo-section">
+        <div class="promo-copy">
+          <p class="eyebrow">Promo + QR</p>
+          <h2>Первый кофе за наш счёт</h2>
+          <p>
+            Покажи QR на кассе и получи бесплатный классический кофе при первом визите в MyCoffee.
+          </p>
+          <p class="promo-disclaimer">
+            Демо-условия для первой презентации. Финальная механика акции будет подтверждена заказчиком.
+          </p>
+          <a class="button button-primary" href="#contacts">Сканировать QR</a>
+        </div>
+
+        <div class="qr-card" aria-label="Демо QR-код">
+          <div class="qr-code" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <strong>DEMO QR</strong>
+          <p>Placeholder для первой презентации</p>
+        </div>
+      </section>
+
+      <section id="contacts" class="section contacts-section">
+        <div class="section-heading">
+          <p class="eyebrow">Контакты</p>
+          <h2>Загляни в MyCoffee</h2>
+          <p>Точные контакты будут обновлены после подтверждения заказчиком.</p>
+        </div>
+
+        <div class="contacts-grid" id="contacts-grid"></div>
+
+        <div class="contact-actions">
+          <a class="button button-secondary button-solid" href="tel:+37369000000">Позвонить</a>
+          <a class="button button-secondary button-solid" href="https://instagram.com/mycoffee.chisinau" target="_blank" rel="noreferrer">Открыть Instagram</a>
+          <a class="button button-primary" href="https://maps.google.com/?q=47.0245,28.8323" target="_blank" rel="noreferrer">Построить маршрут</a>
+        </div>
+      </section>
+
+      <section id="map" class="section map-section">
+        <div class="section-heading">
+          <p class="eyebrow">Карта</p>
+          <h2>Мы рядом</h2>
+          <p>Удобно забежать перед учебой, работой или встречей в центре Кишинёва.</p>
+        </div>
+
+        <div class="map-shell" role="img" aria-label="Карта-демо для первой презентации">
+          <div class="map-pattern" aria-hidden="true"></div>
+          <div class="map-pin"></div>
+          <div class="map-caption">
+            <strong data-content="map-address">ул. Алексея Матеевича 87</strong>
+            <span data-content="map-note">Точный адрес и ссылка на карту будут обновлены после подтверждения заказчиком.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>MyCoffee</strong>
+        <p>Демо-сайт для первой презентации. Финальные тексты, цены и контакты обновляются после ответа заказчика.</p>
+      </div>
+      <nav aria-label="Нижняя навигация">
+        <a href="#menu">Меню</a>
+        <a href="#promo">Акция</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
