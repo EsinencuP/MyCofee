@@ -1,46 +1,20 @@
-# MyCoffee
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+</div>
 
-Первая рабочая версия презентационного сайта кофейни.
+# Run and deploy your AI Studio app
 
-## Что уже есть
+This contains everything you need to run your app locally.
 
-- финальный presentation copy pack
-- статический landing page
-- демо-hero image
-- placeholder-меню, контакты, promo + QR, карта
+View your app in AI Studio: https://ai.studio/apps/fc3151fa-00f7-4f70-962f-90a2aca26979
 
-## Основные файлы
+## Run Locally
 
-- `presentation-copy-pack-final.md`
-- `frontend/index.html`
-- `frontend/styles.css`
-- `frontend/app.js`
+**Prerequisites:**  Node.js
 
-## Локальный просмотр
 
-### Актуальный preview через backend
-
-```powershell
-& 'C:\Users\User.DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\bin\node.exe' 'C:\Users\User.DESKTOP\Documents\Web dev\MyCofee\backend\server.mjs'
-```
-
-После запуска:
-
-- `http://127.0.0.1:4187/`
-- `http://127.0.0.1:4187/api/health`
-- `http://127.0.0.1:4187/api/site-content`
-
-### Старый static-only preview
-
-```powershell
-& 'C:\Users\User.DESKTOP\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' -m http.server 4186 -d 'C:\Users\User.DESKTOP\Documents\Web dev\MyCofee\frontend'
-```
-
-## Что заменить после ответа заказчика
-
-- название и слоган
-- реальные позиции меню и цены
-- настоящий адрес
-- телефон и Instagram
-- условия QR-акции
-- реальные фото и бренд-активы
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

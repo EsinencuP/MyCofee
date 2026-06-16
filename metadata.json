@@ -1,0 +1,6 @@
+{
+  "name": "Specialty Coffee Shop",
+  "description": "Современный Landing Page для уютной кофейни в Кишинёве, Молдова с изысканной типографикой, горизонтальным меню, галереей и сезонными акциями.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
