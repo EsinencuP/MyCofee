@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, Hand } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Hand, Coffee, CupSoda, Leaf, CakeSlice } from 'lucide-react';
 import { MENU_ITEMS } from '../data';
 import { MenuItem } from '../types';
 import { Language, TRANSLATIONS } from '../translations';
@@ -199,20 +199,35 @@ export default function MenuCarousel({ lang }: MenuCarouselProps) {
                   className="flex-shrink-0 w-72 sm:w-80 group relative bg-cream border border-coffee/5 shadow-md flex flex-col justify-between overflow-hidden"
                 >
                   <div>
-                    {/* Visual Card Image with Zoom-on-hover effect */}
-                    <div className="aspect-4/3 overflow-hidden bg-milk relative">
+                    {/* Visual Card Vector with Zoom-on-hover effect */}
+                    <div className="aspect-4/3 overflow-hidden bg-milk relative flex items-center justify-center border-b border-coffee/5">
                       {item.isPopular && (
                         <span className="absolute top-4 left-4 z-10 bg-caramel text-cream text-[9px] uppercase tracking-widest px-2.5 py-1 font-semibold shadow-md">
                           {t.popularBadge}
                         </span>
                       )}
                       
-                      <img
-                        src={item.image}
-                        alt={lang === 'ro' ? item.nameRo : item.nameRu}
-                        referrerPolicy="no-referrer"
-                        className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out select-none pointer-events-none"
-                      />
+                      {/* Grid background motif */}
+                      <div className="absolute inset-0 bg-[radial-gradient(#1b1b1805_1px,transparent_1px)] [background-size:10px_10px] opacity-40" />
+
+                      {/* Styled graphic */}
+                      <div className="relative z-10 flex flex-col items-center justify-center text-coffee/80 transition-transform duration-700 ease-out group-hover:scale-110">
+                        <div className="w-16 h-16 rounded-full bg-cream border border-coffee/10 shadow-inner flex items-center justify-center mb-3 text-caramel relative group-hover:shadow-lg transition-all duration-300">
+                          {item.category === 'coffee' && <Coffee className="w-8 h-8 stroke-[1.25]" />}
+                          {item.category === 'cold' && <CupSoda className="w-8 h-8 stroke-[1.25]" />}
+                          {item.category === 'tea' && <Leaf className="w-8 h-8 stroke-[1.25]" />}
+                          {item.category === 'pastry' && <CakeSlice className="w-8 h-8 stroke-[1.25]" />}
+                          
+                          {/* Aesthetic orbital badge circle */}
+                          <div className="absolute inset-0 rounded-full border border-dashed border-caramel/20 group-hover:rotate-45 transition-transform duration-1000" />
+                        </div>
+                        <span className="text-[10px] tracking-[0.25em] font-mono text-coffee/40 uppercase font-semibold">
+                          {item.category === 'coffee' ? 'Espresso Craft' : item.category === 'cold' ? 'Iced Fusion' : item.category === 'tea' ? 'Botanical Leaf' : 'Oven Fresh'}
+                        </span>
+                      </div>
+
+                      {/* Minimal card interior decoration line */}
+                      <div className="absolute bottom-2 inset-x-4 h-[1px] bg-coffee/5" />
                     </div>
 
                     {/* Content */}

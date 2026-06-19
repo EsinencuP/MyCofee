@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Eye, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Eye, X, ChevronLeft, ChevronRight, Coffee, Compass, Users, Flame } from 'lucide-react';
 import { GALLERY_ITEMS } from '../data';
 import { Language, TRANSLATIONS } from '../translations';
 
@@ -11,6 +11,7 @@ interface GalleryProps {
 export default function Gallery({ lang }: GalleryProps) {
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState<number | null>(null);
+  const [brokenImages, setBrokenImages] = useState<Record<string, boolean>>({});
   const t = TRANSLATIONS[lang];
 
   // Filter logic
@@ -102,13 +103,29 @@ export default function Gallery({ lang }: GalleryProps) {
                   } h-full min-h-[240px]`}
                 >
                   {/* Image wrapper */}
-                  <div className="w-full h-full overflow-hidden relative">
-                    <img
-                      src={item.url}
-                      alt={lang === 'ro' ? item.captionRo : item.captionRu}
-                      referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover grayscale-[12%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
-                    />
+                  <div className="w-full h-full overflow-hidden relative bg-milk">
+                    {brokenImages[item.id] ? (
+                      <div className="w-full h-full bg-cream/75 flex flex-col items-center justify-center p-6 relative select-none">
+                        <div className="absolute inset-0 bg-[radial-gradient(#1b1b1803_1px,transparent_1px)] [background-size:10px_10px] opacity-40" />
+                        <div className="w-14 h-14 rounded-full bg-milk border border-coffee/5 flex items-center justify-center text-caramel mb-3 relative shadow-inner">
+                          {item.category === 'interior' && <Compass className="w-6 h-6 stroke-[1.25]" />}
+                          {item.category === 'drinks' && <Coffee className="w-6 h-6 stroke-[1.25]" />}
+                          {item.category === 'process' && <Flame className="w-6 h-6 stroke-[1.25]" />}
+                          {item.category === 'guests' && <Users className="w-6 h-6 stroke-[1.25]" />}
+                        </div>
+                        <span className="text-[10px] tracking-[0.2em] font-mono text-coffee/30 uppercase font-bold text-center">
+                          Caffee / MD Atmosphere
+                        </span>
+                      </div>
+                    ) : (
+                      <img
+                        src={item.url}
+                        alt={lang === 'ro' ? item.captionRo : item.captionRu}
+                        referrerPolicy="no-referrer"
+                        onError={() => setBrokenImages(prev => ({ ...prev, [item.id]: true }))}
+                        className="w-full h-full object-cover grayscale-[12%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                      />
+                    )}
 
                     {/* Scrim Overlay */}
                     <div className="absolute inset-0 bg-coffee/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6" />
@@ -189,12 +206,31 @@ export default function Gallery({ lang }: GalleryProps) {
                 transition={{ duration: 0.3 }}
                 className="max-w-full max-h-full overflow-hidden border border-white/5 shadow-2xl relative"
               >
-                <img
-                  src={filteredPhotos[selectedPhotoIndex].url}
-                  alt={lang === 'ro' ? filteredPhotos[selectedPhotoIndex].captionRo : filteredPhotos[selectedPhotoIndex].captionRu}
-                  referrerPolicy="no-referrer"
-                  className="max-w-full max-h-[70vh] object-contain mx-auto"
-                />
+                {brokenImages[filteredPhotos[selectedPhotoIndex].id] ? (
+                  <div className="w-[400px] h-[300px] max-w-full bg-cream/95 flex flex-col items-center justify-center p-8 relative rounded-none mx-auto shadow-2xl text-coffee">
+                    <div className="absolute inset-0 bg-[radial-gradient(#1b1b1803_1px,transparent_1px)] [background-size:10px_10px] opacity-40" />
+                    <div className="w-16 h-16 rounded-full bg-milk border border-coffee/10 flex items-center justify-center text-caramel mb-4 relative shadow-inner">
+                      {filteredPhotos[selectedPhotoIndex].category === 'interior' && <Compass className="w-7 h-7 stroke-[1.25]" />}
+                      {filteredPhotos[selectedPhotoIndex].category === 'drinks' && <Coffee className="w-7 h-7 stroke-[1.25]" />}
+                      {filteredPhotos[selectedPhotoIndex].category === 'process' && <Flame className="w-7 h-7 stroke-[1.25]" />}
+                      {filteredPhotos[selectedPhotoIndex].category === 'guests' && <Users className="w-7 h-7 stroke-[1.25]" />}
+                    </div>
+                    <span className="text-xs tracking-[0.2em] font-mono text-coffee/60 uppercase font-bold text-center mb-1">
+                      Caffee / MD Atmosphere
+                    </span>
+                    <span className="text-[10px] text-coffee/40 uppercase font-sans tracking-widest font-bold">
+                      {filteredPhotos[selectedPhotoIndex].category}
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={filteredPhotos[selectedPhotoIndex].url}
+                    alt={lang === 'ro' ? filteredPhotos[selectedPhotoIndex].captionRo : filteredPhotos[selectedPhotoIndex].captionRu}
+                    referrerPolicy="no-referrer"
+                    onError={() => setBrokenImages(prev => ({ ...prev, [filteredPhotos[selectedPhotoIndex].id]: true }))}
+                    className="max-w-full max-h-[70vh] object-contain mx-auto"
+                  />
+                )}
                 
                 {/* Caption Block */}
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-coffee/90 via-coffee/40 to-transparent p-6 text-cream text-center">

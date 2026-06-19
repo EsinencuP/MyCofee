@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { Sparkles, Percent } from 'lucide-react';
+import { Sparkles, Percent, CupSoda, CakeSlice } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../translations';
 import croissantDeal from '../assets/images/croissant_deal_1781468150137.jpg';
 
@@ -149,17 +149,31 @@ export default function Promotions({ lang }: PromotionsProps) {
                 transition={{ duration: 0.8, delay: index * 0.15 }}
                 className="bg-milk border border-coffee/5 flex-1 flex flex-col sm:flex-row overflow-hidden group hover:border-caramel/20 transition-all duration-300"
               >
-                {/* Left side Image */}
-                <div className="aspect-video sm:aspect-square sm:w-5/12 overflow-hidden bg-cream relative">
+                {/* Left side Vector Illustration */}
+                <div className="aspect-video sm:aspect-square sm:w-5/12 overflow-hidden bg-milk relative flex items-center justify-center border-r border-coffee/5 select-none shrink-0">
                   <span className="absolute top-3 left-3 z-10 bg-coffee text-cream text-[9px] uppercase tracking-[0.15em] px-2 py-1 font-semibold font-sans">
                     {promo.badge}
                   </span>
-                  <img
-                    src={promo.image}
-                    alt={promo.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                  />
+                  
+                  {/* Styled vector placeholder background with circles and stripes */}
+                  <div className="absolute inset-0 bg-[radial-gradient(#1b1b1803_1px,transparent_1px)] [background-size:8px_8px]" />
+
+                  <div className="relative z-10 flex flex-col items-center justify-center text-coffee/80 transition-transform duration-700 ease-out group-hover:scale-110">
+                    <div className="w-14 h-14 rounded-full bg-cream border border-coffee/10 shadow-inner flex items-center justify-center text-caramel relative group-hover:shadow-md transition-shadow">
+                      {promo.id === 'p2' ? (
+                        <CupSoda className="w-7 h-7 stroke-[1.25]" />
+                      ) : (
+                        <CakeSlice className="w-7 h-7 stroke-[1.25]" />
+                      )}
+                      
+                      {/* Interactive ring detail */}
+                      <div className="absolute inset-0 rounded-full border border-dashed border-caramel/10 group-hover:rotate-90 transition-transform duration-1000" />
+                    </div>
+                  </div>
+
+                  {/* Decorative corner tag lines */}
+                  <div className="absolute bottom-2 right-2 w-3 h-3 border-r border-b border-coffee/10" />
+                  <div className="absolute top-2 right-2 w-3 h-3 border-r border-t border-coffee/10" />
                 </div>
 
                 {/* Right side Text */}
