@@ -1,5 +1,6 @@
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Percent, CupSoda, CakeSlice } from 'lucide-react';
+import { Sparkles, Percent, CupSoda, CakeSlice, Coffee } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../translations';
 import croissantDeal from '../assets/images/croissant_deal_1781468150137.jpg';
 
@@ -9,6 +10,7 @@ interface PromotionsProps {
 
 export default function Promotions({ lang }: PromotionsProps) {
   const t = TRANSLATIONS[lang];
+  const [isMainImageBroken, setIsMainImageBroken] = useState(false);
 
   const promotions = [
     {
@@ -94,12 +96,26 @@ export default function Promotions({ lang }: PromotionsProps) {
                     {promotions[0].badge}
                   </span>
                   
-                  <img
-                    src={promotions[0].image}
-                    alt={promotions[0].title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                  />
+                  {isMainImageBroken ? (
+                    <div className="w-full h-full bg-milk flex flex-col items-center justify-center p-8 relative select-none">
+                      <div className="absolute inset-0 bg-[radial-gradient(#1b1b1803_1px,transparent_1px)] [background-size:12px_12px] opacity-40" />
+                      <div className="w-20 h-20 rounded-full bg-cream border border-coffee/10 flex items-center justify-center text-caramel relative shadow-inner group-hover:scale-105 transition-transform duration-700">
+                        <Coffee className="w-10 h-10 stroke-[1.25]" />
+                        <div className="absolute inset-0 rounded-full border border-dashed border-caramel/10 group-hover:rotate-45 transition-transform duration-1000" />
+                      </div>
+                      <span className="text-[11px] tracking-[0.3em] font-mono text-coffee/30 uppercase font-bold text-center mt-4">
+                        Caffee / MD Morning Duo
+                      </span>
+                    </div>
+                  ) : (
+                    <img
+                      src={promotions[0].image}
+                      alt={promotions[0].title}
+                      referrerPolicy="no-referrer"
+                      onError={() => setIsMainImageBroken(true)}
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                    />
+                  )}
                 </div>
 
                 {/* Info Text */}

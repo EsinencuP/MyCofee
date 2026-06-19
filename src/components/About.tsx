@@ -1,4 +1,6 @@
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
+import { Coffee } from 'lucide-react';
 import { Language, TRANSLATIONS } from '../translations';
 import baristaCraft from '../assets/images/barista_craft_1781468133549.jpg';
 
@@ -8,6 +10,7 @@ interface AboutProps {
 
 export default function About({ lang }: AboutProps) {
   const t = TRANSLATIONS[lang];
+  const [isImgBroken, setIsImgBroken] = useState(false);
 
   return (
     <section
@@ -81,13 +84,27 @@ export default function About({ lang }: AboutProps) {
               <div className="absolute -inset-4 border border-caramel/25 translate-x-4 translate-y-4 pointer-events-none" />
 
               {/* Real Custom Generated Image */}
-              <div className="w-full h-full bg-milk overflow-hidden border border-coffee/10 shadow-xl group">
-                <img
-                  src={baristaCraft}
-                  alt="Barista Caffee / MD Chișinău"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
-                />
+              <div className="w-full h-full bg-milk overflow-hidden border border-coffee/10 shadow-xl group flex items-center justify-center relative">
+                {isImgBroken ? (
+                  <div className="w-full h-full bg-cream/80 flex flex-col items-center justify-center p-8 relative select-none">
+                    <div className="absolute inset-0 bg-[radial-gradient(#1b1b1803_1px,transparent_1px)] [background-size:12px_12px] opacity-40" />
+                    <div className="w-16 h-16 rounded-full bg-milk border border-coffee/10 flex items-center justify-center text-caramel relative shadow-inner group-hover:scale-105 transition-transform duration-700">
+                      <Coffee className="w-8 h-8 stroke-[1.25]" />
+                      <div className="absolute inset-0 rounded-full border border-dashed border-caramel/10 group-hover:rotate-45 transition-transform duration-1000" />
+                    </div>
+                    <span className="text-[10px] tracking-[0.25em] font-mono text-coffee/35 uppercase font-bold text-center mt-3">
+                      Caffee / MD Specialty Barista
+                    </span>
+                  </div>
+                ) : (
+                  <img
+                    src={baristaCraft}
+                    alt="Barista Caffee / MD Chișinău"
+                    referrerPolicy="no-referrer"
+                    onError={() => setIsImgBroken(true)}
+                    className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                  />
+                )}
               </div>
 
               {/* Minimal floating content info */}

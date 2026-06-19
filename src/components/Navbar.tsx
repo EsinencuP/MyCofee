@@ -159,41 +159,53 @@ export default function Navbar({ lang, onChangeLang, onOpenBooking }: NavbarProp
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Backdrop & Drawer Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-x-0 top-[70px] z-30 bg-cream border-b border-coffee/10 shadow-xl py-8 px-6 flex flex-col gap-6 md:hidden"
-          >
-            <div className="flex flex-col gap-4">
-              {menuItems.map((item) => (
-                <button
-                  key={item.target}
-                  onClick={() => scrollToSection(item.target)}
-                  className="text-left py-2.5 text-lg font-serif text-coffee border-b border-coffee/5 hover:text-caramel tracking-wide uppercase"
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          <>
+            {/* Dark backdrop overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 top-[70px] z-20 bg-coffee/40 backdrop-blur-[3px] md:hidden"
+            />
 
-            <div className="border-t border-coffee/5 pt-6 mt-2">
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenBooking();
-                }}
-                className="w-full py-3.5 bg-coffee text-cream text-xs uppercase tracking-widest rounded-none hover:bg-caramel hover:border-caramel transition-all duration-300 font-medium flex items-center justify-center gap-2 border border-coffee"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                {t.btnBook}
-              </button>
-            </div>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-x-0 top-[70px] z-30 bg-cream border-b border-coffee/10 shadow-xl py-8 px-6 flex flex-col gap-6 md:hidden"
+            >
+              <div className="flex flex-col gap-4">
+                {menuItems.map((item) => (
+                  <button
+                    key={item.target}
+                    onClick={() => scrollToSection(item.target)}
+                    className="text-left py-2.5 text-lg font-serif text-coffee border-b border-coffee/5 hover:text-caramel tracking-wide uppercase"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="border-t border-coffee/5 pt-6 mt-2">
+                <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    onOpenBooking();
+                  }}
+                  className="w-full py-3.5 bg-coffee text-cream text-xs uppercase tracking-widest rounded-none hover:bg-caramel hover:border-caramel transition-all duration-300 font-medium flex items-center justify-center gap-2 border border-coffee"
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  {t.btnBook}
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

@@ -63,7 +63,7 @@ export default function Hero({ lang, onOpenBooking }: HeroProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4, ease: [0.215, 0.61, 0.355, 1] }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.08] max-w-4xl text-cream"
+          className="font-serif text-4xl min-[380px]:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight leading-[1.08] max-w-4xl text-cream"
         >
           {t.heroTitle_1} <br className="hidden sm:inline" />
           {t.heroTitle_2} <span className="italic font-light text-caramel font-serif">{t.heroTitle_3}</span>
